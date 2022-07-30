@@ -9,21 +9,21 @@ An analysis of school district and student data to provide insight and determine
 ### Purpose
 
 Maria is the chief data scientist for a city school district. She has asked for assistance with reporting on school district budget and standardized testing scores. Requested areas of analysis are:
-- The district summary with budgeting information, average reading and math scores, and percentage of students passing reading, math, and both reading and math
-- The school summary with budget by school, number of students per school, budget per student, and scores 
-- The top 5 and bottom 5 performing schools, based on the overall passing rate
+- The district summary with budgeting information, average reading and math scores, and percentage of students passing reading, math, and overall passing rate which equates to passing both reading and math
+- The school summary with budget by school, number of students per school, budget per student, and scores as described above
+- The top 5 and bottom 5 performing schools based on the overall passing rate
 - The average math score for each grade level from each school
 - The average reading score for each grade level from each school
 - The scores by school spending per student, by school size, and by school type
 The information from this analysis will be used to determine school effectiveness, strategic budget planning, and create discussion of school priorities at both the school and district level.
 
-Maria and her supervisor were information about academic dishonesty at Thomas High School for 9th grade students. Therefore, Maria would like to drop the standardized test scores from the reporting above for all students who meet this criteria. Some information, like total budget and number of students per school will not change. However, scores and percentage of students passing reading and math will be affected. 
+Maria and her supervisor were given information about academic dishonesty at Thomas High School for 9th grade students. Therefore, Maria would like to drop the standardized test scores from the reporting above for all students who meet this criteria. Some information, like total budget and number of students per school will not change. However, scores and percentage of students passing reading, math, and overall passing scores will be affected. 
 
 This analysis will reflect on how the academic dishonesty has changed the data from the original reporting.
 
 ## Results
 
-Using the loc method, the code was updated to replace all Thomas High School 9th graders with NaN or null values rather than just dropping the affected students from the file. This will ensure that the correct number of students for the district and per school will remain intact. 
+Using the .loc method, the code was updated to replace all Thomas High School 9th graders with NaN or null values rather than just dropping the affected students from the file. This will ensure that the correct number of students for the district and per school will remain intact. 
 
 ### School District Summary
 #### *Original DataFrame*
@@ -51,11 +51,11 @@ Originally, the formulas were created to calculate percentage passing math, read
 ![school_summary_revised](https://user-images.githubusercontent.com/108373151/181996691-98fab364-265b-4056-9bb8-06c6932e5bfb.png)
 
 Again, the total number of students at Thomas High School remained at 1,635. Total budget and budget per student also did not change.
-- Average math score fell from 83.418349% to 83.350937%
-- Average reading score fell from 83.848930% to 83.896082%
-- Percentage of studends who passed math fell from 93.272171% to 93.185690%
-- Percentage of students who passed reading fell from 97.308869% to 97.018739%
-- Percentage of students who passed both math and reading fell from 90.948012% to 90.630324%
+- Average math score fell from 83.42% to 83.35%
+- Average reading score increased from 83.85% to 83.90%
+- Percentage of studends who passed math fell from 93.27% to 93.19%
+- Percentage of students who passed reading fell from 97.31% to 97.02%
+- Percentage of students who passed both math and reading fell from 90.95% to 90.63%
 All other school data remains the same as the other schools were not affected by the academic dishonesty.
 
 ### Top 5 Performing Schools
@@ -65,7 +65,8 @@ All other school data remains the same as the other schools were not affected by
 #### *Updated DataFrame*
 ![top_five](https://user-images.githubusercontent.com/108373151/181996707-d4a98bcc-6f56-4783-b314-f6aa0d2f698d.png)
 
-Although the score metrics changed for Thomas High School, they are still in 2nd place in the top 5 performing schools with an overall passing rate of 90.63% among their 10th through 12th graders. .
+Although the score metrics changed for Thomas High School, the changes were not significant enough to change the relative ranking amongst schools. Thomas High School is still in 2nd place in the top 5 performing schools with an overall passing rate of 90.63% among their 10th through 12th graders.
+(One interesting thing to note is all top 5 performing schools are charter schools.)
 
 ### Bottom 5 Performing Schools
 #### *Original DataFrame*
@@ -75,6 +76,7 @@ Although the score metrics changed for Thomas High School, they are still in 2nd
 ![bottom_five](https://user-images.githubusercontent.com/108373151/181996663-96190fb8-46c8-447a-b068-9ee68c30405a.png)
 
 Thomas High school does not appear in this dataset, so there is no change to the bottom 5 schools. 
+(One interesting thing to note is all bottom 5 performing schools are district schools.)
 
 ### Average Math Scores by Grade Level and School
 #### *Original DataFrame*
@@ -110,7 +112,7 @@ Referring back to the School Summary DataFrame, Thomas High School spends $638 i
 #### *Updated DataFrame*
 ![school_size](https://user-images.githubusercontent.com/108373151/181996683-26e57164-3ebb-45b4-95f2-f2db8d44969c.png)
 
-Referring back to the School Summary DataFrame, Thomas High School has 1,635 students. This places them in the Medium school size bucket. Again, due to rounding, there is no change in the scores.
+Referring back to the School Summary DataFrame, Thomas High School has 1,635 students. This places them in the medium school size bucket. Again, due to rounding, there is no change in the scores.
 
 ### Scores by School Type
 #### *Original DataFrame*
@@ -123,10 +125,10 @@ Referring back to the School Summary DataFrame, Thomas High School is a charter 
 
 ## Summary
 
-- To summarize, eliminating the 9th grade testing scores at Thomas High School made an impact on the results, but not a very large one. With this dateset only being 1.2% of the total population of the school district, the changes were minimal. The biggest changes to the percentages were noted in the following DataFrames:
-	- School District Summary 
-	- School Summary 
-	- Top 5 Performing Schools  
-	- Math and reading scores by grade
+- To summarize, eliminating the 9th grade testing scores at Thomas High School made an impact on the results, but not a very large one. With the eliminated scores only being 1.2% of the total population of the school district, the changes were minimal. The biggest changes to the percentages were noted in the following DataFrames:
+	- School District Summary average and passing percentages declined by 0.1-0.3%
+	- School Summary average and passing percentages declined by 0.1-0.3% with the exception of average reading scores increased by 0.005%
+	- Top 5 Performing Schools with the overall passing percentage changing from 90.95% to 90.63%
+	- Math and reading scores by grade reflect NaN in the 9th grade spot at Thomas High School
 
-To view the full script, please open PyCitySchools_Challenge.ipynb in Jupyter Notebook.
+To view the script in its entirety, please open PyCitySchools_Challenge.ipynb in Jupyter Notebook.
